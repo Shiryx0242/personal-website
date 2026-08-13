@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          <div className="brand-dot"></div>
+          <img src="/favicon.png" alt="Logo" className="brand-logo" />
           <span className="brand-name text-gradient">Witthawat</span>
         </a>
 
