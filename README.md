@@ -16,6 +16,30 @@ A modern, responsive personal portfolio website built with React, Vite, and Type
 - Vanilla CSS (Custom properties, Flexbox/Grid, Animations)
 - [Lucide Icons](https://lucide.dev/)
 
+## 📂 Project Structure
+```text
+personal-website/
+├── public/               # Static assets
+├── src/
+│   ├── assets/           # Images, illustrations, and icons
+│   ├── components/       # Reusable React components
+│   │   ├── About/        # About me section
+│   │   ├── Experience/   # Work & Education timeline
+│   │   ├── Footer/       # Page footer with links
+│   │   ├── Hero/         # Top landing section
+│   │   ├── Navbar/       # Navigation menu
+│   │   ├── Projects/     # Portfolio showcase grid
+│   │   └── TechStack/    # Technologies I use
+│   ├── App.tsx           # Main application layout component
+│   ├── App.css           # Global app-level styles
+│   ├── main.tsx          # Application entry point
+│   └── index.css         # Global CSS variables and resets
+├── index.html            # Main HTML file
+├── package.json          # Project dependencies and scripts
+├── tsconfig.json         # TypeScript configuration
+└── vite.config.ts        # Vite bundler configuration
+```
+
 ## 🚀 Getting Started
 
 ### Prerequisites
