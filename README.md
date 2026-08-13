@@ -1,32 +1,44 @@
-# React + TypeScript + Vite
+# Witthawat's Personal Portfolio 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern, responsive personal portfolio website built with React, Vite, and TypeScript. This website showcases my skills, experience, and various projects including web development, UI/UX design, and computer vision.
 
-Currently, two official plugins are available:
+## ✨ Features
+- **Hero Section**: A clean introduction with dynamic gradient typography.
+- **About Me**: A professional summary highlighting my passion for full-stack development and UI/UX design.
+- **Tech Stack**: A curated list of my technical skills including React, Node.js, TypeScript, Figma, and Postman.
+- **Portfolio Showcase**: A gallery of 6 featured projects spanning Web Apps, Mobile UI/UX, and AI/Machine Learning.
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile viewing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Built With
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- Vanilla CSS (Custom properties, Flexbox/Grid, Animations)
+- [Lucide Icons](https://lucide.dev/)
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
 
-## Expanding the Oxlint configuration
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Shiryx0242/personal-website.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd personal-website
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
