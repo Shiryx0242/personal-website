@@ -1,0 +1,191 @@
+.projects-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: transparent; /* The curve handles the bg color */
+  margin-top: 4rem; /* Give space above the curve */
+}
+
+/* The curved background */
+.projects-curved-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-secondary);
+  border-top-left-radius: 50% 120px;
+  border-top-right-radius: 50% 120px;
+  z-index: -1;
+}
+
+.projects-content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 6rem 2rem 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Header */
+.projects-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.projects-label {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.projects-main-text {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Card */
+.project-card {
+  background-color: var(--bg-card-alt); /* slightly darker than var(--bg-secondary) to stand out like the image */
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  background-color: var(--bg-card-hover);
+}
+
+/* Image */
+.project-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+/* Number */
+.project-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--timeline-circle);
+  color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Title */
+.project-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+
+/* Description */
+.project-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Links / Buttons */
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.project-link-btn {
+  padding: 0.6rem 1.5rem;
+  background-color: var(--bg-card);
+  color: var(--text);
+  border-radius: 2rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border);
+}
+
+.project-link-btn:hover {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-curved-bg {
+    border-top-left-radius: 50% 60px;
+    border-top-right-radius: 50% 60px;
+  }
+  .projects-main-text {
+    font-size: 2.5rem;
+  }
+  .projects-content {
+    padding: 4rem 1.5rem 6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .projects-curved-bg {
+    border-top-left-radius: 50% 40px;
+    border-top-right-radius: 50% 40px;
+  }
+  .projects-main-text {
+    font-size: 2rem;
+  }
+}
