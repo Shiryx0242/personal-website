@@ -18,9 +18,9 @@ function App() {
         <section id="resume" className="resume-section">
           <Experience />
           <TechStack />
+          <GithubStats />
         </section>
         <Projects />
-        <GithubStats />
       </main>
       <Footer />
     </>

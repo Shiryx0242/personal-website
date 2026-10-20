@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
-import { Users, BookMarked, Star, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import './GithubStats.css';
 
 const GithubIcon = ({ size = 20 }: { size?: number }) => (
@@ -19,21 +19,6 @@ const GithubIcon = ({ size = 20 }: { size?: number }) => (
   </svg>
 );
 
-interface GitHubUserResponse {
-  followers: number;
-  public_repos: number;
-}
-
-interface GitHubRepoResponse {
-  stargazers_count: number;
-}
-
-interface StatsState {
-  followers: number | null;
-  publicRepos: number | null;
-  totalStars: number | null;
-}
-
 const GITHUB_USERNAME = 'Shiryx0242';
 
 const blueCalendarTheme = {
@@ -42,170 +27,51 @@ const blueCalendarTheme = {
 };
 
 const GithubStats: React.FC = () => {
-  const [stats, setStats] = useState<StatsState>({
-    followers: null,
-    publicRepos: null,
-    totalStars: null,
-  });
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchGitHubStats = async () => {
-      try {
-        setLoading(true);
-
-        const [userRes, reposRes] = await Promise.all([
-          fetch(`https://api.github.com/users/${GITHUB_USERNAME}`),
-          fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`),
-        ]);
-
-        if (!userRes.ok || !reposRes.ok) {
-          throw new Error('Failed to fetch GitHub data');
-        }
-
-        const userData: GitHubUserResponse = await userRes.json();
-        const reposData: GitHubRepoResponse[] = await reposRes.json();
-
-        const starsCount = Array.isArray(reposData)
-          ? reposData.reduce((acc, repo) => acc + (repo.stargazers_count || 0), 0)
-          : 0;
-
-        if (isMounted) {
-          setStats({
-            followers: userData.followers ?? 0,
-            publicRepos: userData.public_repos ?? 0,
-            totalStars: starsCount,
-          });
-        }
-      } catch {
-        if (isMounted) {
-          setStats({
-            followers: 0,
-            publicRepos: 0,
-            totalStars: 0,
-          });
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchGitHubStats();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  const statItems = [
-    {
-      label: 'Followers',
-      value: stats.followers,
-      icon: Users,
-      subtext: 'Community network',
-    },
-    {
-      label: 'Public Repos',
-      value: stats.publicRepos,
-      icon: BookMarked,
-      subtext: 'Open-source repositories',
-    },
-    {
-      label: 'GitHub Stars',
-      value: stats.totalStars,
-      icon: Star,
-      subtext: 'Total repository stars',
-    },
-  ];
-
   return (
-    <section id="github-stats" className="gh-stats-section">
-      <div className="gh-stats-container">
-        <div className="gh-stats-header">
-          <span className="gh-stats-badge">OPEN SOURCE ACTIVITY</span>
-          <h2 className="gh-stats-title">
-            GitHub Contributions <span className="gh-text-blue">&amp; Stats</span>
-          </h2>
-        </div>
-
-        <div className="gh-stats-layout">
-          {/* Left Section (70%) - Contribution Graph */}
-          <div className="gh-calendar-card">
-            <div className="gh-calendar-top">
-              <div className="gh-user-info">
-                <div className="gh-icon-box">
-                  <GithubIcon size={20} />
-                </div>
-                <div>
-                  <h3 className="gh-card-heading">Contribution Activity</h3>
-                  <a
-                    href={`https://github.com/${GITHUB_USERNAME}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gh-username-link"
-                  >
-                    @{GITHUB_USERNAME}
-                    <ExternalLink size={13} />
-                  </a>
-                </div>
-              </div>
-
+    <div id="github-stats" className="gh-calendar-container">
+      <div className="gh-calendar-card">
+        <div className="gh-calendar-top">
+          <div className="gh-user-info">
+            <div className="gh-icon-box">
+              <GithubIcon size={20} />
+            </div>
+            <div>
+              <h3 className="gh-card-heading">Contribution Activity</h3>
               <a
                 href={`https://github.com/${GITHUB_USERNAME}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="gh-profile-pill"
+                className="gh-username-link"
               >
-                View Profile
-                <ExternalLink size={14} />
+                @{GITHUB_USERNAME}
+                <ExternalLink size={13} />
               </a>
             </div>
-
-            <div className="gh-calendar-wrapper">
-              <GitHubCalendar
-                username={GITHUB_USERNAME}
-                colorScheme="dark"
-                theme={blueCalendarTheme}
-                blockSize={13}
-                blockMargin={4}
-                fontSize={13}
-              />
-            </div>
           </div>
 
-          {/* Right Section (30%) - Real-time Stats Cards */}
-          <div className="gh-cards-column">
-            {statItems.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <div key={item.label} className="gh-stat-card">
-                  <div className="gh-stat-icon-wrapper">
-                    <IconComponent size={22} />
-                  </div>
-                  <div className="gh-stat-content">
-                    <span className="gh-stat-label">{item.label}</span>
-                    {loading ? (
-                      <div className="gh-stat-skeleton" aria-label="Loading">
-                        -
-                      </div>
-                    ) : (
-                      <span className="gh-stat-value">
-                        {item.value !== null ? item.value.toLocaleString() : '-'}
-                      </span>
-                    )}
-                    <span className="gh-stat-subtext">{item.subtext}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <a
+            href={`https://github.com/${GITHUB_USERNAME}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gh-profile-pill"
+          >
+            View Profile
+            <ExternalLink size={14} />
+          </a>
+        </div>
+
+        <div className="gh-calendar-wrapper">
+          <GitHubCalendar
+            username={GITHUB_USERNAME}
+            colorScheme="dark"
+            theme={blueCalendarTheme}
+            blockSize={14}
+            blockMargin={4}
+            fontSize={13}
+          />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
