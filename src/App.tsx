@@ -4,6 +4,7 @@ import About from './components/About/About'
 import Experience from './components/Experience/Experience'
 import TechStack from './components/TechStack/TechStack'
 import Projects from './components/Projects/Projects'
+import GithubStats from './components/GithubStats/GithubStats'
 import Footer from './components/Footer/Footer'
 import './App.css'
 
@@ -19,6 +20,7 @@ function App() {
           <TechStack />
         </section>
         <Projects />
+        <GithubStats />
       </main>
       <Footer />
     </>
